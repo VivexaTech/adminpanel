@@ -1,0 +1,34 @@
+.users-page {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.access-denied {
+  text-align: center;
+  padding: 3rem;
+  background: var(--light-card);
+  border-radius: 0.75rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--light-border);
+}
+
+body.dark-mode .access-denied {
+  background: var(--dark-card);
+  border-color: var(--dark-border);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.access-denied h2 {
+  color: var(--danger-color);
+  margin-bottom: 1rem;
+}
+
+.access-denied p {
+  color: var(--light-text);
+  opacity: 0.7;
+}
+
+body.dark-mode .access-denied p {
+  color: var(--dark-text);
+}

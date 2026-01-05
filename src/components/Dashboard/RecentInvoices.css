@@ -1,0 +1,89 @@
+.recent-invoices h3 {
+  margin: 0 0 1.5rem 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.invoices-table {
+  overflow-x: auto;
+}
+
+.invoices-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.invoices-table thead {
+  background: rgba(99, 102, 241, 0.1);
+}
+
+body.dark-mode .invoices-table thead {
+  background: rgba(99, 102, 241, 0.2);
+}
+
+.invoices-table th {
+  padding: 1rem;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  color: var(--light-text);
+  opacity: 0.7;
+}
+
+body.dark-mode .invoices-table th {
+  color: var(--dark-text);
+}
+
+.invoices-table td {
+  padding: 1rem;
+  border-top: 1px solid var(--light-border);
+  color: var(--light-text);
+}
+
+body.dark-mode .invoices-table td {
+  border-top-color: var(--dark-border);
+  color: var(--dark-text);
+}
+
+.invoices-table tbody tr:hover {
+  background: rgba(99, 102, 241, 0.05);
+}
+
+body.dark-mode .invoices-table tbody tr:hover {
+  background: rgba(99, 102, 241, 0.1);
+}
+
+.no-data {
+  text-align: center;
+  padding: 2rem;
+  color: var(--light-text);
+  opacity: 0.5;
+}
+
+body.dark-mode .no-data {
+  color: var(--dark-text);
+}
+
+.table-skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.skeleton-row {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr 1fr;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.skeleton-cell {
+  height: 20px;
+  border-radius: 4px;
+}
+
+.chart-skeleton {
+  height: 300px;
+  border-radius: 8px;
+}

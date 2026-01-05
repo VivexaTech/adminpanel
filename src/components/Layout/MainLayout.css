@@ -1,0 +1,49 @@
+.main-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+  margin-left: var(--sidebar-width);
+  display: flex;
+  flex-direction: column;
+  background: var(--light-bg);
+  transition: margin-left 0.3s ease;
+}
+
+body.dark-mode .main-content {
+  background: var(--dark-bg);
+}
+
+.content-wrapper {
+  flex: 1;
+  padding: 2rem;
+  overflow-y: auto;
+}
+
+.page-heading {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: var(--light-text);
+}
+
+body.dark-mode .page-heading {
+  color: var(--dark-text);
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    margin-left: 0;
+  }
+
+  .content-wrapper {
+    padding: 1rem;
+  }
+
+  .page-heading {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+}

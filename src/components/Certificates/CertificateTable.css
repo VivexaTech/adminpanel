@@ -1,0 +1,58 @@
+.certificates-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.certificates-table thead {
+  background: rgba(99, 102, 241, 0.1);
+}
+
+body.dark-mode .certificates-table thead {
+  background: rgba(99, 102, 241, 0.2);
+}
+
+.certificates-table th {
+  padding: 1rem;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  color: var(--light-text);
+  opacity: 0.7;
+}
+
+body.dark-mode .certificates-table th {
+  color: var(--dark-text);
+}
+
+.certificates-table td {
+  padding: 1rem;
+  border-top: 1px solid var(--light-border);
+  color: var(--light-text);
+}
+
+body.dark-mode .certificates-table td {
+  border-top-color: var(--dark-border);
+  color: var(--dark-text);
+}
+
+.certificates-table code {
+  background: rgba(99, 102, 241, 0.1);
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-family: 'Courier New', monospace;
+  font-size: 0.875rem;
+  color: var(--primary-color);
+}
+
+body.dark-mode .certificates-table code {
+  background: rgba(99, 102, 241, 0.2);
+}
+
+.certificates-table tbody tr:hover {
+  background: rgba(99, 102, 241, 0.05);
+}
+
+body.dark-mode .certificates-table tbody tr:hover {
+  background: rgba(99, 102, 241, 0.1);
+}
