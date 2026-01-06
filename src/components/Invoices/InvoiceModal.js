@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { FiX, FiPlus, FiTrash2 } from 'react-icons/fi';
+import { formatCurrency } from '../../utils/currency';
 import './InvoiceModal.css';
 
 const InvoiceModal = ({ clients, onClose, onSave }) => {
@@ -126,7 +127,7 @@ const InvoiceModal = ({ clients, onClose, onSave }) => {
                   required
                 />
                 <span className="service-total">
-                  ${(service.quantity * service.price).toFixed(2)}
+                  {formatCurrency(service.quantity * service.price)}
                 </span>
                 {formData.services.length > 1 && (
                   <button
@@ -157,15 +158,15 @@ const InvoiceModal = ({ clients, onClose, onSave }) => {
           <div className="invoice-summary">
             <div className="summary-row">
               <span>Subtotal:</span>
-              <span>${totals.subtotal.toFixed(2)}</span>
+              <span>{formatCurrency(totals.subtotal)}</span>
             </div>
             <div className="summary-row">
               <span>Tax:</span>
-              <span>${totals.taxAmount.toFixed(2)}</span>
+              <span>{formatCurrency(totals.taxAmount)}</span>
             </div>
             <div className="summary-row total">
               <span>Total:</span>
-              <span>${totals.total.toFixed(2)}</span>
+              <span>{formatCurrency(totals.total)}</span>
             </div>
           </div>
 

@@ -11,11 +11,34 @@ import Clients from './pages/Clients';
 import Invoices from './pages/Invoices';
 import Portfolio from './pages/Portfolio';
 import Certificates from './pages/Certificates';
+import EmployeeManagement from './pages/EmployeeManagement';
+import EmployeePortal from './pages/EmployeePortal';
 import Users from './pages/Users';
 import './App.css';
 
+// Admin-only route wrapper
+const AdminRoute = ({ children }) => {
+  const { isSuperAdmin, staffData, loading } = useAuth();
+
+  if (loading) {
+    return (
+      <div className="loading-container">
+        <div className="spinner"></div>
+        <p>Loading...</p>
+      </div>
+    );
+  }
+
+  // Only super admin can access admin routes
+  if (!isSuperAdmin() || staffData) {
+    return <Navigate to="/my-portal" replace />;
+  }
+
+  return children;
+};
+
 const AppRoutes = () => {
-  const { currentUser, isAuthorized, loading } = useAuth();
+  const { currentUser, isAuthorized, staffData, loading } = useAuth();
 
   if (loading) {
     return (
@@ -30,23 +53,40 @@ const AppRoutes = () => {
     <Routes>
       <Route
         path="/login"
-        element={currentUser && isAuthorized ? <Navigate to="/" replace /> : <Login />}
+        element={
+          currentUser && isAuthorized 
+            ? (staffData ? <Navigate to="/my-portal" replace /> : <Navigate to="/" replace />)
+            : <Login />
+        }
+      />
+      <Route
+        path="/my-portal"
+        element={
+          <ProtectedRoute>
+            <MainLayout>
+              <EmployeePortal />
+            </MainLayout>
+          </ProtectedRoute>
+        }
       />
       <Route
         path="/*"
         element={
           <ProtectedRoute>
-            <MainLayout>
-              <Routes>
-                <Route path="/" element={<Dashboard />} />
-                <Route path="/clients" element={<Clients />} />
-                <Route path="/invoices" element={<Invoices />} />
-                <Route path="/portfolio" element={<Portfolio />} />
-                <Route path="/certificates" element={<Certificates />} />
-                <Route path="/users" element={<Users />} />
-                <Route path="*" element={<Navigate to="/" replace />} />
-              </Routes>
-            </MainLayout>
+            <AdminRoute>
+              <MainLayout>
+                <Routes>
+                  <Route path="/" element={<Dashboard />} />
+                  <Route path="/clients" element={<Clients />} />
+                  <Route path="/invoices" element={<Invoices />} />
+                  <Route path="/portfolio" element={<Portfolio />} />
+                  <Route path="/certificates" element={<Certificates />} />
+                  <Route path="/employees" element={<EmployeeManagement />} />
+                  <Route path="/users" element={<Users />} />
+                  <Route path="*" element={<Navigate to="/" replace />} />
+                </Routes>
+              </MainLayout>
+            </AdminRoute>
           </ProtectedRoute>
         }
       />

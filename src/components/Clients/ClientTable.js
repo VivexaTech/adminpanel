@@ -4,6 +4,7 @@ import { FiEdit, FiEye, FiTrash2 } from 'react-icons/fi';
 import { doc, deleteDoc, collection, query, where, getDocs } from 'firebase/firestore';
 import { db } from '../../firebase/config';
 import { toast } from 'react-toastify';
+import { formatCurrency } from '../../utils/currency';
 import './ClientTable.css';
 
 const ClientTable = ({ clients, loading, onEdit, onRefresh }) => {
@@ -91,7 +92,7 @@ const ClientTable = ({ clients, loading, onEdit, onRefresh }) => {
                   <td>{client.email}</td>
                   <td>{client.phone || 'N/A'}</td>
                   <td>{client.company || 'N/A'}</td>
-                  <td>${(client.totalBusiness || 0).toLocaleString()}</td>
+                  <td>{formatCurrency(client.totalBusiness || 0)}</td>
                   <td>
                     <div className="action-buttons">
                       <button

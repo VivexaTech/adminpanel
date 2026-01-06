@@ -1,0 +1,242 @@
+.attendance-section {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.attendance-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+}
+
+.stat-card {
+  background: var(--light-card);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--light-border);
+}
+
+body.dark-mode .stat-card {
+  background: var(--dark-card);
+  border-color: var(--dark-border);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.stat-value {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.stat-value.success {
+  color: #10b981;
+}
+
+.stat-value.danger {
+  color: #ef4444;
+}
+
+.stat-value.warning {
+  color: #f59e0b;
+}
+
+.stat-label {
+  font-size: 0.875rem;
+  color: var(--light-text);
+  opacity: 0.7;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+body.dark-mode .stat-label {
+  color: var(--dark-text);
+}
+
+.attendance-calendar {
+  background: var(--light-card);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--light-border);
+}
+
+body.dark-mode .attendance-calendar {
+  background: var(--dark-card);
+  border-color: var(--dark-border);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.attendance-calendar h4 {
+  margin: 0 0 1.5rem 0;
+  font-size: 1.25rem;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 0.75rem;
+}
+
+.calendar-day {
+  background: var(--light-bg);
+  border: 2px solid var(--light-border);
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+body.dark-mode .calendar-day {
+  background: var(--dark-bg);
+  border-color: var(--dark-border);
+}
+
+.calendar-day:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.calendar-day.today {
+  border-color: var(--primary-color);
+  background: rgba(99, 102, 241, 0.1);
+}
+
+.calendar-day.status-success {
+  background: rgba(16, 185, 129, 0.1);
+  border-color: #10b981;
+}
+
+.calendar-day.status-danger {
+  background: rgba(239, 68, 68, 0.1);
+  border-color: #ef4444;
+}
+
+.calendar-day.status-warning {
+  background: rgba(245, 158, 11, 0.1);
+  border-color: #f59e0b;
+}
+
+.day-number {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.day-status {
+  font-size: 0.75rem;
+}
+
+.time-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  margin-bottom: 0.25rem;
+  font-size: 0.7rem;
+}
+
+.status-badge {
+  padding: 0.125rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.status-badge.status-success {
+  background: rgba(16, 185, 129, 0.2);
+  color: #10b981;
+}
+
+.status-badge.status-danger {
+  background: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+}
+
+.status-badge.status-warning {
+  background: rgba(245, 158, 11, 0.2);
+  color: #f59e0b;
+}
+
+.no-record-text {
+  opacity: 0.5;
+}
+
+.attendance-list {
+  background: var(--light-card);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--light-border);
+}
+
+body.dark-mode .attendance-list {
+  background: var(--dark-card);
+  border-color: var(--dark-border);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.attendance-list h4 {
+  margin: 0 0 1.5rem 0;
+  font-size: 1.25rem;
+}
+
+.records-table {
+  overflow-x: auto;
+}
+
+.records-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.records-table thead {
+  background: rgba(99, 102, 241, 0.1);
+}
+
+body.dark-mode .records-table thead {
+  background: rgba(99, 102, 241, 0.2);
+}
+
+.records-table th {
+  padding: 1rem;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  color: var(--light-text);
+  opacity: 0.7;
+}
+
+body.dark-mode .records-table th {
+  color: var(--dark-text);
+}
+
+.records-table td {
+  padding: 1rem;
+  border-top: 1px solid var(--light-border);
+  color: var(--light-text);
+}
+
+body.dark-mode .records-table td {
+  border-top-color: var(--dark-border);
+  color: var(--dark-text);
+}
+
+.records-table tbody tr:hover {
+  background: rgba(99, 102, 241, 0.05);
+}
+
+body.dark-mode .records-table tbody tr:hover {
+  background: rgba(99, 102, 241, 0.1);
+}
+
+@media (max-width: 768px) {
+  .calendar-grid {
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  }
+}

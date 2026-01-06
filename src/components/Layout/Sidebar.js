@@ -10,22 +10,31 @@ import {
   FiAward,
   FiSettings,
   FiLogOut,
+  FiUserCheck,
 } from 'react-icons/fi';
 import './Sidebar.css';
 
 const Sidebar = ({ isOpen, toggleSidebar }) => {
-  const { logout, isSuperAdmin, userData } = useAuth();
-
-  const menuItems = [
-    { path: '/', icon: FiLayout, label: 'Dashboard' },
-    { path: '/clients', icon: FiUsers, label: 'Clients' },
-    { path: '/invoices', icon: FiFileText, label: 'Invoices' },
-    { path: '/portfolio', icon: FiBriefcase, label: 'Portfolio' },
-    { path: '/certificates', icon: FiAward, label: 'Certificates' },
-  ];
-
-  if (isSuperAdmin()) {
-    menuItems.push({ path: '/users', icon: FiSettings, label: 'Users' });
+  const { logout, isSuperAdmin, userData, staffData } = useAuth();
+  
+  // Only show admin menu items to super admin
+  // Staff members only see "My Portal"
+  const menuItems = [];
+  
+  if (isSuperAdmin() && !staffData) {
+    // Super admin sees all admin routes
+    menuItems.push(
+      { path: '/', icon: FiLayout, label: 'Dashboard' },
+      { path: '/clients', icon: FiUsers, label: 'Clients' },
+      { path: '/invoices', icon: FiFileText, label: 'Invoices' },
+      { path: '/portfolio', icon: FiBriefcase, label: 'Portfolio' },
+      { path: '/certificates', icon: FiAward, label: 'Certificates' },
+      { path: '/employees', icon: FiUserCheck, label: 'Employee Management' },
+      { path: '/users', icon: FiSettings, label: 'Users' }
+    );
+  } else if (staffData && !isSuperAdmin()) {
+    // Staff members only see their portal
+    menuItems.push({ path: '/my-portal', icon: FiUserCheck, label: 'My Portal' });
   }
 
   return (

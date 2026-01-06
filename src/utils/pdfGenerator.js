@@ -1,5 +1,6 @@
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
+import { formatCurrency, formatAmount } from './currency';
 
 export const generateInvoicePDF = async (invoice) => {
   const doc = new jsPDF();
@@ -26,7 +27,7 @@ export const generateInvoicePDF = async (invoice) => {
     invoice.services.forEach((service, index) => {
       const serviceTotal = (service.quantity || 0) * (service.price || 0);
       doc.text(
-        `${service.name || 'Service'} - Qty: ${service.quantity || 0} - Price: $${(service.price || 0).toFixed(2)} - Total: $${serviceTotal.toFixed(2)}`,
+        `${service.name || 'Service'} - Qty: ${service.quantity || 0} - Price: ${formatCurrency(service.price || 0)} - Total: ${formatCurrency(serviceTotal)}`,
         20,
         yPos
       );
@@ -36,13 +37,13 @@ export const generateInvoicePDF = async (invoice) => {
   
   // Totals
   yPos += 5;
-  doc.text(`Subtotal: $${((invoice.totalAmount || 0) - (invoice.tax || 0)).toFixed(2)}`, 150, yPos);
+  doc.text(`Subtotal: ${formatCurrency((invoice.totalAmount || 0) - (invoice.tax || 0))}`, 150, yPos);
   yPos += 7;
-  doc.text(`Tax: $${(invoice.tax || 0).toFixed(2)}`, 150, yPos);
+  doc.text(`Tax: ${formatCurrency(invoice.tax || 0)}`, 150, yPos);
   yPos += 7;
   doc.setFontSize(12);
   doc.setFont(undefined, 'bold');
-  doc.text(`Total: $${(invoice.totalAmount || 0).toFixed(2)}`, 150, yPos);
+  doc.text(`Total: ${formatCurrency(invoice.totalAmount || 0)}`, 150, yPos);
   
   // Save PDF
   doc.save(`invoice-${invoice.invoiceNumber}.pdf`);

@@ -1,0 +1,81 @@
+.employee-management {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.management-header {
+  background: var(--light-card);
+  border-radius: 0.75rem;
+  padding: 1rem 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--light-border);
+}
+
+body.dark-mode .management-header {
+  background: var(--dark-card);
+  border-color: var(--dark-border);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.section-tabs {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.section-tab {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  background: transparent;
+  color: var(--light-text);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  opacity: 0.7;
+}
+
+body.dark-mode .section-tab {
+  color: var(--dark-text);
+}
+
+.section-tab:hover {
+  opacity: 1;
+  background: rgba(99, 102, 241, 0.1);
+}
+
+.section-tab.active {
+  opacity: 1;
+  background: var(--primary-color);
+  color: white;
+}
+
+.staff-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+@media (max-width: 768px) {
+  .section-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .section-tabs {
+    flex-direction: column;
+  }
+
+  .section-tab {
+    width: 100%;
+  }
+}

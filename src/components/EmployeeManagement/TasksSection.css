@@ -1,0 +1,254 @@
+.tasks-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.back-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: rgba(99, 102, 241, 0.1);
+  color: var(--primary-color);
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.back-btn:hover {
+  background: rgba(99, 102, 241, 0.2);
+}
+
+.header-left h3 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.filter-bar {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--light-border);
+  border-radius: 0.5rem;
+  background: var(--light-card);
+  color: var(--light-text);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+body.dark-mode .filter-btn {
+  border-color: var(--dark-border);
+  background: var(--dark-card);
+  color: var(--dark-text);
+}
+
+.filter-btn:hover {
+  background: rgba(99, 102, 241, 0.1);
+}
+
+.filter-btn.active {
+  background: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+
+.tasks-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.task-card {
+  background: var(--light-card);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--light-border);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+body.dark-mode .task-card {
+  background: var(--dark-card);
+  border-color: var(--dark-border);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.task-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 1rem;
+}
+
+.task-header h4 {
+  margin: 0;
+  font-size: 1.25rem;
+  flex: 1;
+}
+
+.status-select {
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--light-border);
+  background: var(--light-bg);
+  color: var(--light-text);
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+body.dark-mode .status-select {
+  border-color: var(--dark-border);
+  background: var(--dark-bg);
+  color: var(--dark-text);
+}
+
+.status-select.status-success {
+  background: rgba(16, 185, 129, 0.2);
+  color: #10b981;
+  border-color: #10b981;
+}
+
+.status-select.status-info {
+  background: rgba(59, 130, 246, 0.2);
+  color: #3b82f6;
+  border-color: #3b82f6;
+}
+
+.status-select.status-warning {
+  background: rgba(245, 158, 11, 0.2);
+  color: #f59e0b;
+  border-color: #f59e0b;
+}
+
+.task-description {
+  color: var(--light-text);
+  opacity: 0.8;
+  margin: 0;
+  line-height: 1.6;
+}
+
+body.dark-mode .task-description {
+  color: var(--dark-text);
+}
+
+.task-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.task-progress label {
+  display: block;
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+  color: var(--light-text);
+  opacity: 0.7;
+}
+
+body.dark-mode .task-progress label {
+  color: var(--dark-text);
+}
+
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background: rgba(99, 102, 241, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--primary-color);
+  transition: width 0.3s ease;
+}
+
+.task-due-date {
+  font-size: 0.875rem;
+  color: var(--light-text);
+  opacity: 0.7;
+}
+
+body.dark-mode .task-due-date {
+  color: var(--dark-text);
+}
+
+.task-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: auto;
+}
+
+.task-actions .action-btn {
+  flex: 1;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  transition: all 0.2s ease;
+}
+
+.task-actions .action-btn.edit {
+  background: rgba(16, 185, 129, 0.1);
+  color: #10b981;
+}
+
+.task-actions .action-btn.edit:hover {
+  background: rgba(16, 185, 129, 0.2);
+}
+
+.task-actions .action-btn.delete {
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+}
+
+.task-actions .action-btn.delete:hover {
+  background: rgba(239, 68, 68, 0.2);
+}
+
+.loading-state,
+.no-data {
+  text-align: center;
+  padding: 3rem;
+  color: var(--light-text);
+  opacity: 0.5;
+}
+
+body.dark-mode .loading-state,
+body.dark-mode .no-data {
+  color: var(--dark-text);
+}
+
+@media (max-width: 768px) {
+  .tasks-grid {
+    grid-template-columns: 1fr;
+  }
+}

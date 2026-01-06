@@ -1,0 +1,63 @@
+.staff-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.staff-table thead {
+  background: rgba(99, 102, 241, 0.1);
+}
+
+body.dark-mode .staff-table thead {
+  background: rgba(99, 102, 241, 0.2);
+}
+
+.staff-table th {
+  padding: 1rem;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  color: var(--light-text);
+  opacity: 0.7;
+}
+
+body.dark-mode .staff-table th {
+  color: var(--dark-text);
+}
+
+.staff-table td {
+  padding: 1rem;
+  border-top: 1px solid var(--light-border);
+  color: var(--light-text);
+}
+
+body.dark-mode .staff-table td {
+  border-top-color: var(--dark-border);
+  color: var(--dark-text);
+}
+
+.staff-table tbody tr:hover {
+  background: rgba(99, 102, 241, 0.05);
+}
+
+body.dark-mode .staff-table tbody tr:hover {
+  background: rgba(99, 102, 241, 0.1);
+}
+
+.status-badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.status-badge.active {
+  background: rgba(16, 185, 129, 0.2);
+  color: #10b981;
+}
+
+.status-badge.inactive {
+  background: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+}

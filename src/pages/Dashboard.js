@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { collection, query, getDocs } from 'firebase/firestore';
 import { db } from '../firebase/config';
+import { formatCurrency } from '../utils/currency';
 import KPICard from '../components/Dashboard/KPICard';
 import RevenueChart from '../components/Dashboard/RevenueChart';
 import SalesChart from '../components/Dashboard/SalesChart';
@@ -63,14 +64,14 @@ const Dashboard = () => {
         />
         <KPICard
           title="Total Sales"
-          value={`$${stats.totalSales.toLocaleString()}`}
+          value={formatCurrency(stats.totalSales)}
           icon="dollar"
           color="success"
           loading={loading}
         />
         <KPICard
           title="Total Profit"
-          value={`$${stats.totalProfit.toLocaleString()}`}
+          value={formatCurrency(stats.totalProfit)}
           icon="trending"
           color="info"
           loading={loading}

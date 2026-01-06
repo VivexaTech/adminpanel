@@ -1,0 +1,369 @@
+.employee-attendance {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.employee-attendance h2 {
+  margin: 0 0 1rem 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.attendance-card {
+  background: var(--light-bg);
+  border: 2px solid var(--light-border);
+  border-radius: 1rem;
+  padding: 2rem;
+  text-align: center;
+}
+
+body.dark-mode .attendance-card {
+  background: var(--dark-bg);
+  border-color: var(--dark-border);
+}
+
+.attendance-status {
+  margin-bottom: 2rem;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 2rem;
+  border-radius: 0.75rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.status-badge svg {
+  font-size: 1.5rem;
+}
+
+.status-badge.present {
+  background: rgba(16, 185, 129, 0.1);
+  color: #10b981;
+}
+
+.status-badge.leave {
+  background: rgba(245, 158, 11, 0.1);
+  color: #f59e0b;
+}
+
+.status-badge.absent {
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+}
+
+.status-badge.not-marked {
+  background: rgba(99, 102, 241, 0.1);
+  color: var(--primary-color);
+}
+
+.time-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.time-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  font-size: 1.125rem;
+  color: var(--light-text);
+}
+
+body.dark-mode .time-item {
+  color: var(--dark-text);
+}
+
+.time-item svg {
+  font-size: 1.5rem;
+  color: var(--primary-color);
+}
+
+.leave-notes {
+  background: rgba(245, 158, 11, 0.1);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+.leave-notes strong {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #f59e0b;
+}
+
+.leave-notes p {
+  margin: 0;
+  color: var(--light-text);
+  line-height: 1.6;
+}
+
+body.dark-mode .leave-notes p {
+  color: var(--dark-text);
+}
+
+.attendance-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.btn {
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  transition: all 0.2s ease;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background: var(--primary-color);
+  color: white;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: #4f46e5;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+}
+
+.btn-secondary {
+  background: rgba(99, 102, 241, 0.1);
+  color: var(--primary-color);
+  border: 2px solid var(--primary-color);
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background: rgba(99, 102, 241, 0.2);
+}
+
+.completed-message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: rgba(16, 185, 129, 0.1);
+  color: #10b981;
+  border-radius: 0.5rem;
+  font-weight: 600;
+}
+
+.completed-message svg {
+  font-size: 1.5rem;
+}
+
+.leave-status-message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: rgba(245, 158, 11, 0.1);
+  color: #f59e0b;
+  border-radius: 0.5rem;
+  font-weight: 600;
+}
+
+.leave-status-message svg {
+  font-size: 1.5rem;
+}
+
+.btn-checkout {
+  background: #ef4444;
+  color: white;
+}
+
+.btn-checkout:hover:not(:disabled) {
+  background: #dc2626;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.modal-content {
+  background: var(--light-card);
+  border-radius: 1rem;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+body.dark-mode .modal-content {
+  background: var(--dark-card);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--light-border);
+}
+
+body.dark-mode .modal-header {
+  border-color: var(--dark-border);
+}
+
+.modal-header h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.close-btn {
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--light-text);
+  cursor: pointer;
+  padding: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.25rem;
+  transition: all 0.2s ease;
+  opacity: 0.7;
+  width: 2rem;
+  height: 2rem;
+}
+
+body.dark-mode .close-btn {
+  color: var(--dark-text);
+}
+
+.close-btn:hover {
+  opacity: 1;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode .close-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.modal-body {
+  padding: 1.5rem;
+}
+
+.modal-footer {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  margin-top: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: var(--light-text);
+}
+
+body.dark-mode .form-group label {
+  color: var(--dark-text);
+}
+
+.leave-modal {
+  max-width: 500px;
+}
+
+.leave-modal .form-group textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--light-border);
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  background: var(--light-bg);
+  color: var(--light-text);
+  font-family: inherit;
+  resize: vertical;
+}
+
+body.dark-mode .leave-modal .form-group textarea {
+  border-color: var(--dark-border);
+  background: var(--dark-bg);
+  color: var(--dark-text);
+}
+
+.leave-modal .form-group textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+.loading-state {
+  text-align: center;
+  padding: 2rem;
+  color: var(--light-text);
+  opacity: 0.7;
+}
+
+body.dark-mode .loading-state {
+  color: var(--dark-text);
+}
+
+@media (max-width: 768px) {
+  .attendance-card {
+    padding: 1.5rem;
+  }
+
+  .status-badge {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+  }
+
+  .btn {
+    padding: 0.875rem 1.5rem;
+    font-size: 0.95rem;
+  }
+
+  .leave-modal {
+    max-width: 90%;
+  }
+
+  .modal-footer {
+    flex-direction: column;
+  }
+
+  .modal-footer .btn {
+    width: 100%;
+  }
+}

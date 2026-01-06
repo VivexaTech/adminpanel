@@ -1,6 +1,7 @@
 import React from 'react';
 import { FiDownload, FiEye } from 'react-icons/fi';
 import { generateInvoicePDF } from '../../utils/pdfGenerator';
+import { formatCurrency } from '../../utils/currency';
 import './InvoiceTable.css';
 
 const InvoiceTable = ({ invoices, loading, onRefresh }) => {
@@ -54,7 +55,7 @@ const InvoiceTable = ({ invoices, loading, onRefresh }) => {
                 <tr key={invoice.id}>
                   <td>{invoice.invoiceNumber}</td>
                   <td>{invoice.clientId}</td>
-                  <td>${(invoice.totalAmount || 0).toLocaleString()}</td>
+                  <td>{formatCurrency(invoice.totalAmount || 0)}</td>
                   <td>
                     {invoice.createdAt?.toDate
                       ? invoice.createdAt.toDate().toLocaleDateString()

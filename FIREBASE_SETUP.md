@@ -71,6 +71,18 @@ service cloud.firestore {
     match /invoices/{docId} {
       allow read, write: if isAdminUser();
     }
+
+    match /staff/{docId} {
+      allow read, write: if isAdminUser();
+    }
+
+    match /tasks/{docId} {
+      allow read, write: if isAdminUser();
+    }
+
+    match /attendance/{docId} {
+      allow read, write: if isAdminUser();
+    }
   }
 }
 ```

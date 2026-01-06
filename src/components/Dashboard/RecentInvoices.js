@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { collection, query, getDocs, limit, orderBy } from 'firebase/firestore';
 import { db } from '../../firebase/config';
+import { formatCurrency } from '../../utils/currency';
 import './RecentInvoices.css';
 
 const RecentInvoices = () => {
@@ -72,7 +73,7 @@ const RecentInvoices = () => {
                 <tr key={invoice.id}>
                   <td>{invoice.invoiceNumber}</td>
                   <td>{invoice.clientId}</td>
-                  <td>${invoice.totalAmount?.toLocaleString() || 0}</td>
+                  <td>{formatCurrency(invoice.totalAmount || 0)}</td>
                   <td>
                     {invoice.createdAt?.toDate
                       ? invoice.createdAt.toDate().toLocaleDateString()

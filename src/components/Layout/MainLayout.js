@@ -24,6 +24,8 @@ const MainLayout = ({ children }) => {
       '/invoices': 'Invoices',
       '/portfolio': 'Portfolio',
       '/certificates': 'Certificates',
+      '/employees': 'Employee Management',
+      '/my-portal': 'My Portal',
       '/users': 'Users',
     };
     return titles[path] || 'Dashboard';

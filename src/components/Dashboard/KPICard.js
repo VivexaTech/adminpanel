@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FiUsers, FiDollarSign, FiTrendingUp } from 'react-icons/fi';
+import { formatCurrency } from '../../utils/currency';
 import './KPICard.css';
 
 const KPICard = ({ title, value, icon, color, loading }) => {
@@ -65,9 +66,11 @@ const KPICard = ({ title, value, icon, color, loading }) => {
     );
   }
 
-  const formattedValue = typeof value === 'string' && value.includes('$')
-    ? `$${displayValue.toLocaleString()}`
-    : displayValue.toLocaleString();
+  // Check if value is a currency string (contains ₹ or $)
+  const isCurrency = typeof value === 'string' && (value.includes('₹') || value.includes('$'));
+  const formattedValue = isCurrency
+    ? value // Already formatted by formatCurrency utility
+    : displayValue.toLocaleString('en-IN');
 
   return (
     <div className={getColorClass()}>

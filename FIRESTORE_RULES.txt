@@ -9,7 +9,27 @@ service cloud.firestore {
 
     function isAdminUser() {
       return request.auth != null &&
-      exists(/databases/$(database)/documents/users/$(request.auth.uid));
+      (isSuperAdmin() || exists(/databases/$(database)/documents/users/$(request.auth.uid)));
+    }
+
+    function isStaffMember(staffId) {
+      return request.auth != null &&
+      exists(/databases/$(database)/documents/staff/$(staffId)) &&
+      (isSuperAdmin() || 
+       isAdminUser() || 
+       get(/databases/$(database)/documents/staff/$(staffId)).data.email == request.auth.token.email);
+    }
+
+    function isOwnTask() {
+      return request.auth != null &&
+      resource.data.assigneeId != null &&
+      isStaffMember(resource.data.assigneeId);
+    }
+
+    function isOwnAttendance() {
+      return request.auth != null &&
+      resource.data.staffId != null &&
+      isStaffMember(resource.data.staffId);
     }
 
     // Users collection: Allow users to read their own document, super admin can read/write all
@@ -30,15 +50,59 @@ service cloud.firestore {
     }
 
     match /clients/{docId} {
-      allow read, write: if isAdminUser();
+      allow read, write: if isSuperAdmin() || isAdminUser();
     }
 
     match /sales/{docId} {
-      allow read, write: if isAdminUser();
+      allow read, write: if isSuperAdmin() || isAdminUser();
     }
 
     match /invoices/{docId} {
-      allow read, write: if isAdminUser();
+      allow read, write: if isSuperAdmin() || isAdminUser();
+    }
+
+    match /staff/{docId} {
+      allow read: if isSuperAdmin() || 
+        isAdminUser() || 
+        (request.auth != null && resource.data.email == request.auth.token.email);
+      allow write: if isSuperAdmin() || isAdminUser();
+    }
+
+    match /tasks/{docId} {
+      allow read: if isSuperAdmin() || 
+        isAdminUser() || 
+        (request.auth != null && 
+         resource.data.assigneeId != null &&
+         isStaffMember(resource.data.assigneeId));
+      allow update: if isSuperAdmin() || 
+        isAdminUser() || 
+        (request.auth != null && 
+         resource.data.assigneeId != null &&
+         isStaffMember(resource.data.assigneeId) &&
+         request.resource.data.assigneeId == resource.data.assigneeId &&
+         request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status', 'progress', 'updatedAt']));
+      allow create, delete: if isSuperAdmin() || isAdminUser();
+    }
+
+    match /attendance/{docId} {
+      allow read: if isSuperAdmin() || 
+        isAdminUser() || 
+        (request.auth != null && 
+         resource.data.staffId != null &&
+         isStaffMember(resource.data.staffId));
+      allow create: if isSuperAdmin() || 
+        isAdminUser() || 
+        (request.auth != null && 
+         request.resource.data.staffId != null &&
+         isStaffMember(request.resource.data.staffId) &&
+         request.resource.data.staffId == request.resource.data.staffId);
+      allow update: if isSuperAdmin() || 
+        isAdminUser() || 
+        (request.auth != null && 
+         resource.data.staffId != null &&
+         isStaffMember(resource.data.staffId) &&
+         request.resource.data.staffId == resource.data.staffId);
+      allow delete: if isSuperAdmin() || isAdminUser();
     }
   }
 }
