@@ -1,6 +1,6 @@
 {
-  "name": "Intern Portal",
-  "short_name": "Intern Portal",
+  "name": "Admin Panel",
+  "short_name": "Admin Panel",
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",
