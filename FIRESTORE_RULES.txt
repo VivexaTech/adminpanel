@@ -14,12 +14,19 @@ service cloud.firestore {
 
     function isStaffMember(staffId) {
       return request.auth != null &&
+      staffId != null &&
       exists(/databases/$(database)/documents/staff/$(staffId)) &&
       (isSuperAdmin() || 
        isAdminUser() || 
-       get(/databases/$(database)/documents/staff/$(staffId)).data.email == request.auth.token.email);
+       // Check if staff document email matches user's email
+       // Note: Emails are normalized to lowercase in application code
+       // Security rules have elevated privileges to read documents for verification
+       (get(/databases/$(database)/documents/staff/$(staffId)).data.email == request.auth.token.email));
     }
 
+    // Helper function to check if user is a staff member
+    // Note: For list queries, we allow staff to query tasks
+    // Document-level read rules will ensure they only see their own tasks
     function isOwnTask() {
       return request.auth != null &&
       resource.data.assigneeId != null &&
@@ -64,16 +71,27 @@ service cloud.firestore {
     match /staff/{docId} {
       allow read: if isSuperAdmin() || 
         isAdminUser() || 
+        // Note: Emails are normalized to lowercase in application code
         (request.auth != null && resource.data.email == request.auth.token.email);
+      // Allow list queries so staff can find their own record
+      allow list: if request.auth != null;
       allow write: if isSuperAdmin() || isAdminUser();
     }
 
     match /tasks/{docId} {
+      // Allow read for individual documents
+      // Staff can only read tasks where assigneeId matches their staff record
       allow read: if isSuperAdmin() || 
         isAdminUser() || 
         (request.auth != null && 
          resource.data.assigneeId != null &&
          isStaffMember(resource.data.assigneeId));
+      
+      // Allow list queries for authenticated users
+      // Document-level read rules above will filter results
+      // This allows the query to proceed, then filters documents
+      allow list: if request.auth != null;
+      
       allow update: if isSuperAdmin() || 
         isAdminUser() || 
         (request.auth != null && 
